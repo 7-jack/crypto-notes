@@ -1,2 +1,4 @@
-# crypto-notes
-"Crypto" means cryptography.
+# Template for Notes
+
+# TODO
+- Add references
