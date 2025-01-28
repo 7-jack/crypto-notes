@@ -1,58 +1,68 @@
-\section{Section One}
-\label{sets}
+%! TeX root: ../notes.tex
+\section{Introduction}
+\label{introduction}
 
-Introductory\footnote{Footnote.} things \cite{ireland1990classical}.
+Various notes from \cite{katz-lindell}.
 
-\subsection{Definitions and More}
+\begin{definition}[Kerchoffs' Principle]
+    \vocab{Kerchoffs' Principle} states that the security of a cryptographic system  must not depend on the secrecy of the cipher.
 
-Definitions are blue.
-\begin{definition}[Definition Name]
-    Define a \vocab{term} here.
+    In other words, a cipher should be secure even if the algorithm is public.
 \end{definition}
 
-Claims, lemmas, propositions, theorems, corollaries all may come with proofs.
+A few simple attack scenarios:
+\begin{itemize}
+    \item \vocab{Ciphertext-only attack}: The adversary observes ciphertexts and must try to determine the plaintext.
+\item \vocab{Known-plaintext attack}: The adversary can learn one or more plaintexts encrypted under the same key. They must try to determine the plaintext of a different ciphertext they have not seen before.
+\item \vocab{Chosen-plaintext attac}k: The adversary can learn encryptions of plaintexts of its choice. They must try to determine the plaintext of a different ciphertext like before.
+\item \vocab{Chosen-ciphertext attac}k: The adversary can \textit{additionally} learn the plaintexts of ciphertexts of its choice. Their goal is the same as above.
+\end{itemize}
 
-\begin{claim}[Claim Name]
-    A claim.
-\end{claim}
+Note that the first two are \vocab{passive} while the last two are \vocab{active}.
 
-\begin{lemma}[Lemma Name]
-    A lemma.
-\end{lemma}
+\begin{exercise}
+    The first two scenarios are quite realistic. Can you think of some examples?
+\end{exercise} 
 
-\begin{proposition}[Proposition Name]
-    A proposition.
-\end{proposition}
+\begin{exercise}
+    Think of, or research, real world scenarios of the latter two attack scenarios.
+\end{exercise}
 
-\begin{theorem}[Theorem Name]
-    A theorem.
-\end{theorem}
+Historical cryptographic ciphers are weak by modern standards, but they give us a few important lessons:
+\begin{itemize}
+    \item \vocab{Sufficient key space principle}: it is a necessary condition to have a large key space (the domain from which keys are chosen). Otherwise, we can brute force all the keys.
+    \item \vocab{Designing secure ciphers is hard!}: there were many ciphers such as the Vigenere cipher that were insecure (for example, to cryptanalysis). It is the goal of modern cryptography to rigorously define and prove security.
+\end{itemize}
 
-\begin{proof}
-    A proof.
-\end{proof}
+Modern cryptography comes with a few principles:
+\begin{itemize}
+    \item \vocab{Clear, rigorous definitions}.
+    \item \vocab{Clearly stated assumptions; the more minimal assumptions the better}.
+    \item \vocab{Rigorous proofs of security with respect to principles 1 and 2}.
+\end{itemize}
 
-\begin{corollary}[Corollary Name]
-    A corollary.
-\end{corollary}
+\begin{example}
+    To take an example, we give an idea of just how hard it is to rigorously define a \textit{secure encryption scheme}.
+    \begin{itemize}
+        \item \vocab{Try 1: Secure if no adversary can find the key}
 
-\begin{example}[Example Name]
-    Examples
+                But what if the adversary simply learns the plaintext?
+
+        \item \vocab{Try 2: Secure if no adversary can learn the plaintext}
+
+                But what if the adversary learns 50\% of the plaintext? Or the length of the plaintext? Is this definition clear enough? What "percentage" is okay to learn?
+
+        \item \vocab{Try 3: Secure if the adversary cannot determine \textit{any} character of the plaintext}
+
+                What if our plaintext is an integer like our salary and the adversary learns the \textit{range} of our salary? Surely this isn't what we wanted with an "encryption" scheme.
+
+        \item \vocab{Try 4: Secure if adversary cannot derive any \textit{meaningful} information from the ciphertext}
+
+                Close, but no cigar. What exactly does meaningful \textit{mean}? Our encryption scheme could be used in multiple different contexts and "meaningful" could have different meanings in each. For a \textit{definition}, this attempt is not enough.
+
+        \item \vocab{Try 5: Secure if an adversary cannot compute \textit{any} function of the plaintext from the ciphertext}
+
+                This is a rigorous definition: we have replaced "meaningful" with a more meaningful term.
+            
+    \end{itemize}
 \end{example}
-
-Conjectures, questions, and remarks are food for thought.
-
-\begin{conjecture}[Conjecture Name]
-    A conjecture.
-\end{conjecture}
-
-\begin{ques}
-    \label{ques:set}
-    A question.
-\end{ques}
-
-\begin{remark}
-    Links look like \href{https://en.wikipedia.org/wiki/cantor%27s_diagonal_argument}{this}.
-\end{remark}
-
-You can reference things like this: question \ref{ques:set}.
