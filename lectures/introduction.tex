@@ -2,7 +2,7 @@
 \section{Introduction}
 \label{introduction}
 
-Various notes from \cite{katz-lindell}.
+Various notes from chapter 1 of \cite{katz-lindell}.
 
 \begin{definition}[Kerchoffs' Principle]
     \vocab{Kerchoffs' Principle} states that the security of a cryptographic system  must not depend on the secrecy of the cipher.
@@ -56,13 +56,21 @@ Modern cryptography comes with a few principles:
 
                 What if our plaintext is an integer like our salary and the adversary learns the \textit{range} of our salary? Surely this isn't what we wanted with an "encryption" scheme.
 
-        \item \vocab{Try 4: Secure if adversary cannot derive any \textit{meaningful} information from the ciphertext}
+        \item \vocab{Try 4: Secure if the adversary cannot derive any \textit{meaningful} information from the ciphertext}
 
                 Close, but no cigar. What exactly does meaningful \textit{mean}? Our encryption scheme could be used in multiple different contexts and "meaningful" could have different meanings in each. For a \textit{definition}, this attempt is not enough.
 
-        \item \vocab{Try 5: Secure if an adversary cannot compute \textit{any} function of the plaintext from the ciphertext}
+        \item \vocab{Try 5: Secure if the adversary cannot compute \textit{any} function of the plaintext from the ciphertext}
 
                 This is a rigorous definition: we have replaced "meaningful" with a more meaningful term.
-            
     \end{itemize}
 \end{example}
+
+\begin{remark}
+    Albeit, we often allow a carve out for the length of a message to be learned. Can you think of a way to avoid this?
+\end{remark}
+
+\begin{remark}
+    For most of these notes, we will consider adversaries that are \vocab{efficient}: that is, those that run in polynomial time.
+\end{remark}
+
